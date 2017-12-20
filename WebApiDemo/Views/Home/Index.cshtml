@@ -1,0 +1,35 @@
+<div id="Grid"></div>
+
+@section scripts {
+<script type="text/javascript">
+
+    $(function () {
+
+
+        var dataManager = ej.DataManager({
+            url: "http://localhost:57518/api/orders/",
+            //crossDomain: true,
+            adaptor: new ej.WebApiAdaptor()
+        });
+
+        debugger;
+        $("#Grid").ejGrid({
+            dataSource: dataManager, // ej.DataManager({ url: "http://localhost:57518/api/orders/" }),
+            allowPaging: true,
+            allowSorting: true,
+            exportToExcelAction: 'http://localhost:57518/api/orders/ExcelExport',
+            toolbarSettings: { showToolbar: true, toolbarItems: [ej.Grid.ToolBarItems.ExcelExport] },
+            columns: [
+                { field: "OrderID", headerText: "Order ID", width: 75, textAlign: ej.TextAlign.Right },
+                { field: "CustomerID", headerText: "Customer ID", width: 80 },
+                { field: "Freight", width: 75, format: "{0:C}", textAlign: ej.TextAlign.Right },
+                { field: "OrderDate", headerText: "Order Date", width: 80, format: "{0:MM/dd/yyyy}", textAlign: ej.TextAlign.Right },
+                { field: "ShipCity", headerText: "Ship City", width: 110 }
+            ]
+
+        });
+
+    });
+
+</script>
+}
